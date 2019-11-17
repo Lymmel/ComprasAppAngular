@@ -1,0 +1,43 @@
+<h3>Listado de Presupuestos</h3>
+<a class="btn btn-primary float-md-right" routerLink="/addpres">Añadir
+    nuevo presupuesto</a>
+<br>
+<table class="table table-bordered table-striped tabla" style="margin-top:
+40px;">
+    <thead>
+        <tr class="filters">
+            <th>Proveedor</th>
+            <th>Fecha</th>
+            <th>Concepto</th>
+            <th class="text-right">Base</th>
+            <th class="text-right">IVA</th>
+            <th class="text-right">Total</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let presupuesto of presupuestos">
+            <td>{{ presupuesto.proveedor }}</td>
+            <td>{{ presupuesto.fecha }}</td>
+            <td>{{ presupuesto.concepto }}</td>
+            <td class="text-right">{{ presupuesto.base }}</td>
+            <td class="text-right">{{ presupuesto.iva }}</td>
+            <td class="text-right">{{ presupuesto.total }}</td>
+            <td>
+                <button type="button" class="btn btn-success"
+                    routerLink="/editpres/{{ presupuesto.id$ }}">Editar</button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="eliminarPresupuesto(presupuesto.id$)">Eliminar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Añadir nuevo presupuesto</h2>
+<a class="btn btn-primary float-md-right" routerLink="/presupuestos">Regresar al listado</a>
+<br>
+
+<button type="submit" class="btn btn-primary" [disabled]="!presupuestoForm.valid">Añadir Presupuesto</button>
+<a class="btn btn-danger" routerLink="/presupuestos">Cancelar</a>
